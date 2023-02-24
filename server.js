@@ -23,8 +23,7 @@ app.get('/', (req, res) => {
 
 // controllers
 app.use('/auth', require('./routes/auth'));
-app.use('/reservations', require('./routes/reservations'))
-app.use('/testEmail', require('./routes/email'));
+app.use('/post', require('./routes/article'));
 
 let server = app.listen(process.env.PORT || 8000, () => console.log(`Server is working at 8000`))
 
