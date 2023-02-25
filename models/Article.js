@@ -9,6 +9,12 @@ const ArticleSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  tags: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Tag'
+    }
+  ]
   // comments:
   // user:
   // tags:
