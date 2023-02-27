@@ -55,7 +55,7 @@ exports.registerPost = async (req, res) => {
 exports.getAllPosts = async (req, res) => {
   try {
 
-    const posts = await Article.find().populate('tags').exec();
+    const posts = await Article.find().sort({createdAt: -1}).populate('tags').populate('comments').exec();
 
     res.json({
       status: true,

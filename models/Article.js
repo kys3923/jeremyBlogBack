@@ -14,10 +14,14 @@ const ArticleSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Tag'
     }
+  ],
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
   ]
-  // comments:
   // user:
-  // tags:
 }, {timestamps: true});
 
 const Article = mongoose.model('Article', ArticleSchema);
