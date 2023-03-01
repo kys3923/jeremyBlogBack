@@ -20,7 +20,15 @@ const ArticleSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Comment'
     }
-  ]
+  ],
+  category: {
+    type: String,
+    require: true,
+  },
+  subCategory: {
+    type: String,
+    require: true,
+  }
   // user:
 }, {timestamps: true});
 

@@ -3,10 +3,10 @@ const crypto = require('crypto');
 
 exports.register = async (req, res) => {
 
-  const { email, password, username, address, contact } = req.body;
+  const { email, password, username, address, contact, role } = req.body;
 
   // validation
-  if (!username || !email || !password ) {
+  if (!username || !email || !password || !role ) {
     res.status(400).json({
       success: false,
       message: 'Please provide all information'

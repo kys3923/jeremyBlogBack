@@ -20,6 +20,9 @@ const UserSchema = new mongoose.Schema({
   },
   address: String,
   contact: String,
+  role: {
+    type: String,
+  },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 }, {timestamps: true});
