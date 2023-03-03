@@ -14,23 +14,26 @@ exports.register = async (req, res) => {
   }
 
   const userExists = await User.findOne({ email })
-
-  if(!!userExists) {
-    res.status(400).json({
-      success: false,
-      message: 'Provided email already exists'
-    })
-  }
-
+  
   try {
-    const user = await User.create({
-      email,
-      password,
-      username,
-      contact,
-    })
+  
+    if(!!userExists) {
+      res.status(401).json({
+        success: false,
+        message: 'Provided email already exists'
+      })
+    } else {
+      const user = await User.create({
+        email,
+        password,
+        username,
+        contact,
+        role,
+      })
+  
+      sendToken(user, 201, res)
+    }
 
-    sendToken(user, 201, res)
   } catch (e) {
     console.log(e)
     res.json({
@@ -41,7 +44,6 @@ exports.register = async (req, res) => {
 }
 
 exports.login = async (req, res) => {
-  console.log( req.body )
   const { email, password } = req.body;
 
   if(!email || !password) {

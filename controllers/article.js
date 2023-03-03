@@ -3,8 +3,9 @@ const Tag = require('../models/Tag');
 
 exports.registerPost = async (req, res) => {
 
-  const { title, article, tag } = req.body;
+  const { title, article, tag, category, subCategory } = req.body;
 
+  console.log(req.body)
   try {
     
     let tempTags = []
@@ -24,7 +25,6 @@ exports.registerPost = async (req, res) => {
           // add addedCount on tag
           let newCount = foundTag.addedCount + 1;
           let newTag = await Tag.findOneAndUpdate({tag: subject.tag}, {addedCount: newCount})
-          await console.log('asdf')
           await tempTags.push(newTag._id)
           await requestedArticle();
         }
@@ -37,11 +37,11 @@ exports.registerPost = async (req, res) => {
       await Article.create({
         title: title,
         article: article,
+        category: category,
+        subCategory: subCategory,
         tags: tempTags,
       })
     } 
-    
-    console.log(requestedArticle, 'dsffdsa')
     
     res.json({
       status: true,
